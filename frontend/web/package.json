@@ -1,0 +1,20 @@
+{
+  "name": "elm-cognito-web",
+  "version": "0.0.1",
+  "main": "index.js",
+  "repository": "https://github.com/olivoil/elm-cognito",
+  "author": "Olivier Melcher <olivier.melcher@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "exports-loader": "^0.6.4",
+    "source-map-loader": "^0.2.3",
+    "webpack": "^3.10.0"
+  },
+  "dependencies": {
+    "amazon-cognito-identity-js": "^1.29.0",
+    "aws-sdk": "^2.176.0",
+    "jsbn": "^1.1.0",
+    "sjcl": "^1.0.7"
+  }
+}
