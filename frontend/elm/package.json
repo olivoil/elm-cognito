@@ -1,0 +1,26 @@
+{
+  "name": "elm-cognito-web",
+  "version": "0.0.1",
+  "main": "index.js",
+  "repository": "https://github.com/olivoil/elm-cognito",
+  "author": "Olivier Melcher <olivier.melcher@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "autoprefixer": "^7.2.4",
+    "elm": "^0.18.0",
+    "parcel-bundler": "^1.4.1",
+    "parcel-plugin-elm": "^0.1.2-alpha",
+    "postcss-calc": "^6.0.1",
+    "precss": "^2.0.0",
+    "typescript": "^2.6.2"
+  },
+  "dependencies": {
+    "amazon-cognito-identity-js": "^1.29.0"
+  },
+  "scripts": {
+    "start": "parcel serve src/index.html --no-cache",
+    "install": "elm package install",
+    "reinstall": "rimraf node_modules && yarn install && elm package install"
+  }
+}
