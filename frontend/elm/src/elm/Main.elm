@@ -1,25 +1,33 @@
-module Main exposing (..)
+port module Main exposing (..)
 
-import Cognito
+import Cognito exposing (signup, errors, signupSuccess)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onSubmit)
+
 
 main : Program Never Model Msg
 main =
     Html.program
         { init = ( initialModel, Cmd.none )
-        , subscriptions = \model -> Sub.none
+        , subscriptions =
+            \model ->
+                Sub.batch
+                    [ signupSuccess CognitoSignupSuccess
+                    , errors CognitoError
+                    ]
         , update = update
         , view = view
         }
 
+
 type alias Model =
     { signupForm :
-        { email: String
-        , password: String
+        { email : String
+        , password : String
         }
     }
+
 
 initialModel : Model
 initialModel =
@@ -29,23 +37,35 @@ initialModel =
         }
     }
 
- -- update
+
+
+-- update
+
 
 type Msg
     = DoSignup
-    -- | SetEmail String
-    -- | SetPassword String
+    | CognitoError String
+    | CognitoSignupSuccess { username : String }
+
 
 update : Msg -> Model -> ( Model, Cmd msg )
 update msg model =
     case Debug.log "update" msg of
         DoSignup ->
-            ( model, Cognito.signup
-                model.signupForm
-             )
+            ( model
+            , signup model.signupForm
+            )
+
+        CognitoError _ ->
+            ( model, Cmd.none )
+
+        CognitoSignupSuccess _ ->
+            ( model, Cmd.none )
 
 
- -- view
+
+-- view
+
 
 view : Model -> Html Msg
 view model =

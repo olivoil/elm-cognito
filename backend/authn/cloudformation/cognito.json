@@ -105,13 +105,18 @@
         ]
       }
     },
-    "UserPoolClient": {
+    "UserPoolWebClient": {
       "Type": "AWS::Cognito::UserPoolClient",
       "Properties": {
         "ClientName": {
           "Fn::Join": [
             "-",
-            [{ "Ref": "App" }, { "Ref": "Stack" }, { "Ref": "Env" }, "client"]
+            [
+              { "Ref": "App" },
+              { "Ref": "Stack" },
+              { "Ref": "Env" },
+              "web-client"
+            ]
           ]
         },
         "GenerateSecret": false,
@@ -284,28 +289,34 @@
     }
   },
   "Outputs": {
-    "UserPoolId": {
+    "userPoolId": {
       "Value": { "Ref": "UserPool" },
       "Export": {
         "Name": { "Fn::Sub": "${AWS::StackName}-user-pool-id" }
       }
     },
-    "UserPoolArn": {
+    "userPoolArn": {
       "Value": { "Fn::GetAtt": ["UserPool", "Arn"] },
       "Export": {
         "Name": { "Fn::Sub": "${AWS::StackName}-user-pool-arn" }
       }
     },
-    "UserPoolClientId": {
-      "Value": { "Ref": "UserPoolClient" },
+    "userPoolWebClientId": {
+      "Value": { "Ref": "UserPoolWebClient" },
       "Export": {
-        "Name": { "Fn::Sub": "${AWS::StackName}-user-pool-client-id" }
+        "Name": { "Fn::Sub": "${AWS::StackName}-user-pool-web-client-id" }
       }
     },
-    "IdentityPoolId": {
+    "identityPoolId": {
       "Value": { "Ref": "IdentityPool" },
       "Export": {
         "Name": { "Fn::Sub": "${AWS::StackName}-identity-pool-id" }
+      }
+    },
+    "region": {
+      "Value": { "Ref": "AWS::Region" },
+      "Export": {
+        "Name": { "Fn::Sub": "${AWS::StackName}-region" }
       }
     }
   }

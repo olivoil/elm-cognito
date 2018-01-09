@@ -24,6 +24,6 @@ output:
 	@aws cloudformation describe-stacks \
 		--stack-name ${APP}-${STACK}-${ENV} \
 		--profile ${APP}-${ENV} \
-		| jq 'reduce .Stacks[0].Outputs[] as $$i ({}; .[$$i.OutputKey] = $$i)'
+		| jq 'reduce .Stacks[0].Outputs[] as $$i ({}; .[$$i.OutputKey] = $$i.OutputValue)'
 
 .PHONY: output
