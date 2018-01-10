@@ -1,6 +1,6 @@
 port module Main exposing (..)
 
-import Cognito exposing (signup, errors, signupSuccess)
+import Cognito
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onSubmit)
@@ -13,8 +13,8 @@ main =
         , subscriptions =
             \model ->
                 Sub.batch
-                    [ signupSuccess CognitoSignupSuccess
-                    , errors CognitoError
+                    [ Cognito.signupSuccess CognitoSignupSuccess
+                    , Cognito.errors CognitoError
                     ]
         , update = update
         , view = view
@@ -53,7 +53,7 @@ update msg model =
     case Debug.log "update" msg of
         DoSignup ->
             ( model
-            , signup model.signupForm
+            , Cognito.signup model.signupForm
             )
 
         CognitoError _ ->

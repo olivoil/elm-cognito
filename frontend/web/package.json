@@ -11,7 +11,6 @@
     "babel-preset-es2015": "^6.24.1",
     "elm": "^0.18.0",
     "elm-typescript-interop": "^0.0.4",
-    "parcel-bundler": "^1.4.1",
     "parcel-plugin-elm": "^0.1.2-alpha",
     "postcss-calc": "^6.0.1",
     "precss": "^2.0.0",
@@ -23,9 +22,10 @@
   },
   "scripts": {
     "start": "yarn run elm-ts && parcel serve src/index.html --no-cache",
+    "serve": "parcel serve src/index.html --no-cache",
     "install": "elm package install",
-    "reinstall": "rimraf node_modules && yarn install && elm package install",
+    "clean": "rimraf node_modules && rimraf elm-stuff",
     "elm-ts":
-      "elm-typescript-interop src/elm/Main.elm src/elm/Cognito.elm --output=src/ts/cognito.d.ts"
+      "elm-typescript-interop src/elm/Main.elm src/elm/Cognito.elm --output=src/elm/Main/index.d.ts"
   }
 }
