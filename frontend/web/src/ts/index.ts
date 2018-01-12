@@ -22,6 +22,7 @@ Amplify.configure({
 // Signup request
 interface signupRequest {
   email: string;
+  phone: string;
   password: string;
 }
 
@@ -32,7 +33,10 @@ app.ports.signup.subscribe((data: signupRequest) => doSignup(data));
 function doSignup(data: signupRequest) {
   console.log("doSignup", data);
 
-  Auth.signUp(uuidv4(), data.password, data.email)
-    .then(res => app.ports.signupSuccess.send(res.user.getUsername()))
+  Auth.signUp(uuidv4(), data.password, data.email, data.phone)
+    .then(res => {
+      console.log("signup success", res);
+      app.ports.signupSuccess.send(res.user.getUsername());
+    })
     .catch(err => app.ports.errors.send(err.message));
 }

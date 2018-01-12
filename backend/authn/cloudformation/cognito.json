@@ -93,13 +93,13 @@
           {
             "Name": "email",
             "AttributeDataType": "String",
-            "Mutable": false,
-            "Required": true
+            "Mutable": true,
+            "Required": false
           },
           {
             "Name": "phone_number",
             "AttributeDataType": "String",
-            "Mutable": false,
+            "Mutable": true,
             "Required": false
           }
         ]
@@ -140,7 +140,7 @@
         "AllowUnauthenticatedIdentities": true,
         "CognitoIdentityProviders": [
           {
-            "ClientId": { "Ref": "UserPoolClient" },
+            "ClientId": { "Ref": "UserPoolWebClient" },
             "ProviderName": { "Fn::GetAtt": ["UserPool", "ProviderName"] }
           }
         ]

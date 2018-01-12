@@ -7,13 +7,19 @@ export as namespace Elm
 export interface App {
   ports: {
     signup: {
-      subscribe(callback: (data: { email: string; password: string }) => void): void
-    }
-    errors: {
-      send(data: string): void
+      subscribe(callback: (data: { email: string; phone: string; password: string }) => void): void
     }
     signupSuccess: {
       send(data: { username: string }): void
+    }
+    confirmSignup: {
+      subscribe(callback: (data: { code: string; username: string }) => void): void
+    }
+    signupConfirmationSuccess: {
+      send(data: { username: string }): void
+    }
+    errors: {
+      send(data: string): void
     }
   }
 }
